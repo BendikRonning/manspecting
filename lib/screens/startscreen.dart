@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:standardapp/widgets/PageWidget.dart';
 import 'package:flutter_snake_navigationbar/flutter_snake_navigationbar.dart';
+import 'package:standardapp/screens/homescreen.dart';
+import 'package:standardapp/screens/knowledge.dart';
 
 class StartScreen extends StatefulWidget {
   static const String id = 'start_screen';
@@ -9,6 +11,14 @@ class StartScreen extends StatefulWidget {
 }
 
 class _StartScreenState extends State<StartScreen> {
+  List<Widget> _widgetOptions = <Widget>[
+    HomeScreen(),
+    KnowledgeScreen(),
+    Text('tre'),
+    Text('fire'),
+    Text('fem'),
+  ];
+
   Color containerColor = Color(0xFFFDE1D7);
   int _selectedItemPosition = 0;
   SnakeBarStyle snakeBarStyle = SnakeBarStyle.floating;
@@ -47,40 +57,15 @@ class _StartScreenState extends State<StartScreen> {
         actions: <Widget>[
           IconButton(
               icon: Icon(Icons.settings, color: Colors.black),
-              onPressed: () {}),
+              onPressed: () {
+                print('Settings tapped..');
+              }),
         ],
         elevation: 0,
         backgroundColor: Colors.transparent,
       ),
-      body: AnimatedContainer(
-        color: containerColor,
-        duration: Duration(seconds: 1),
-        child: PageView(
-          onPageChanged: _onPageChanged,
-          children: <Widget>[
-            PagerPageWidget(
-              text: 'StineBabe er den diggeste som finnes!!',
-              description: 'Swipe til høyre for å høre mer..',
-              ikon: Icon(Icons.airline_seat_flat_angled),
-            ),
-            PagerPageWidget(
-              text: 'Hun er dronningen av Skien...',
-              description: 'Oki love u oki hade.',
-              ikon: Icon(Icons.dashboard),
-            ),
-            PagerPageWidget(
-              text: '...og den fineste personen i hele verden!',
-              description:
-                  'Kombiner farger og tiler for å lage nais desing oki!',
-              ikon: Icon(Icons.email),
-            ),
-            PagerPageWidget(
-              text: 'StineBabe er best!',
-              description: 'Dette blir desidnet på mine apper!',
-              ikon: Icon(Icons.hd),
-            ),
-          ],
-        ),
+      body: Center(
+        child: _widgetOptions.elementAt(_selectedItemPosition),
       ),
       bottomNavigationBar: SnakeNavigationBar(
         style: snakeBarStyle,
@@ -89,6 +74,7 @@ class _StartScreenState extends State<StartScreen> {
         snakeColor: selectionColor,
         showUnselectedLabels: showUnselectedLabels,
         showSelectedLabels: showSelectedLabels,
+        backgroundColor: Colors.white.withOpacity(0.8),
         elevation: 10,
         shape: bottomBarShape,
         padding: padding,

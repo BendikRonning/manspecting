@@ -4,6 +4,7 @@ class PagerPageWidget extends StatelessWidget {
   final String text;
   final String description;
   final Icon ikon;
+  final Widget innhold;
   final TextStyle titleStyle =
       TextStyle(fontSize: 40, fontFamily: 'SourceSerifPro');
   final TextStyle subtitleStyle = TextStyle(
@@ -14,6 +15,7 @@ class PagerPageWidget extends StatelessWidget {
     this.text,
     this.description,
     this.ikon,
+    this.innhold,
   }) : super(key: key);
 
   @override
